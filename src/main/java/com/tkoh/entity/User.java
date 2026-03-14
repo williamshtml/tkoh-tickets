@@ -1,47 +1,27 @@
-package com.tkoh.model;
+package com.tkoh.entity;
 import jakarta.persistence.*;
-
+import lombok.*;
 @Entity
-@Table(name= "Tickets")
+@Table (name="users")
+@Data
+@NoArgsConstructor
+@AllArgsConstructor
+@Builder
+        
+public class User {
+@Id
+@GeneratedValue(strategy = GenerationType.IDENTITY)
+private Long id;
 
-public class Ticket {
+@Column(nullable = false, unique = true) // es para que no se repita
+private String username;
 
-    @Id
-    @GeneratedValue(strategy = GenerationType.IDENTITY)
-    
-    private Long id;
-    private String titulo;
-    private String descripcion;
-    private String estado;
-    
-    public Ticket() {}
+@Column(nullable = false)  // es para no dejar espacios en blanco
+private String password;
 
-    public Long getId() {
-        return id;
-    }
+@Column(nullable = false)
+private String role;
 
-    public String getTitulo() {
-        return titulo;
-    }
-
-    public void setTitulo(String titulo) {
-        this.titulo = titulo;
-    }
-
-    public String getDescripcion() {
-        return descripcion;
-    }
-
-    public void setDescripcion(String descripcion) {
-        this.descripcion = descripcion;
-    }
-
-    public String getEstado() {
-        return estado;
-    }
-
-    public void setEstado(String estado) {
-        this.estado = estado;
-    }
 }
+
 

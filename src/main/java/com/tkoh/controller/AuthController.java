@@ -1,27 +1,46 @@
 package com.tkoh.controller;
-import com.tkoh.model.Ticket;
-import com.tkoh.service.TicketService;
+import com.tkoh.dto.AuthResponseDTO;
+import com.tkoh.dto.LoginRequestDTO;
+import com.tkoh.dto.RegisterRequestDTO;
+import com.tkoh.service.AuthService;
+import lombok.RequiredArgsConstructor;
+import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 
 import java.util.List;
 
 @RestController
-@RequestMapping("/tickets")
+@RequestMapping("/api/auth")
+@RequiredArgsConstructor
 
-public class TicketController {
-    private final TicketService ticketService;
+public class AuthController {
+ private final AuthService authService;
 
-    public TicketController(TicketService ticketService) {
-        this.ticketService = ticketService;
+    @PostMapping("/register")
+    public ResponseEntity<AuthResponseDTO> registrar(@RequestBody RegisterRequestDTO dto) {
+        return ResponseEntity.ok(authService.registrarUsuario(dto));
     }
 
-    @GetMapping
-    public List<Ticket> listar(){
-        return ticketService.listarTickets();
+    @PostMapping("/login")
+    public ResponseEntity<AuthResponseDTO> login(@RequestBody LoginRequestDTO dto) {
+        return ResponseEntity.ok(authService.login(dto));
     }
 
-    @PostMapping
-    public Ticket crear(@RequestBody Ticket ticket){
-        return ticketService.crearTicket(ticket);
+    @GetMapping("/users")
+    public List<AuthResponseDTO> listar() {
+        return authService.listarUsuarios();
+    }
+
+    @GetMapping("/users/{id}")
+    public AuthResponseDTO obtener(@PathVariable Long id) {
+        return authService.obtenerUsuario(id);
+    }
+
+    @DeleteMapping("/users/{id}")
+    public ResponseEntity<Void> eliminar(@PathVariable Long id) {
+        authService.eliminarUsuario(id);
+        return ResponseEntity.noContent().build();
     }
 }
+    
+

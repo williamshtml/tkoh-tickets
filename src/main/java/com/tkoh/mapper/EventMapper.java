@@ -1,13 +1,20 @@
-/*
- * Click nbfs://nbhost/SystemFileSystem/Templates/Licenses/license-default.txt to change this license
- * Click nbfs://nbhost/SystemFileSystem/Templates/Classes/Class.java to edit this template
- */
 package com.tkoh.mapper;
 
-/**
- *
- * @author willi
- */
+import com.tkoh.dto.EventResponseDTO;
+import com.tkoh.entity.Event;
+import org.springframework.stereotype.Component;
+
+@Component
 public class EventMapper {
-    
+
+    public EventResponseDTO toDTO(Event event) {
+        if (event == null) return null;
+        return EventResponseDTO.builder()
+                .id(event.getId())
+                .name(event.getName())
+                .description(event.getDescription())
+                .availableTickets(event.getAvailableTickets())
+                .status(event.getStatus())
+                .build();
+    }
 }

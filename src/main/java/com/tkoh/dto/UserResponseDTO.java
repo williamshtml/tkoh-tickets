@@ -11,10 +11,8 @@ import lombok.Builder;
 @NoArgsConstructor
 @AllArgsConstructor
 @Builder
-public class EventResponseDTO {
+public class UserResponseDTO {
     private Long id;
-    private String name;
-    private String description;
-    private Integer availableTickets;
-    private String status;
+    private String username;
+    private String role;
 }

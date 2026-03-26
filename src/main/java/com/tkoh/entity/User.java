@@ -1,27 +1,36 @@
 package com.tkoh.entity;
-import jakarta.persistence.*;
-import lombok.*;
+
+import jakarta.persistence.Entity;
+import jakarta.persistence.Table;
+import jakarta.persistence.Id;
+import jakarta.persistence.GeneratedValue;
+import jakarta.persistence.GenerationType;
+import jakarta.persistence.Column;
+import lombok.Getter;
+import lombok.Setter;
+import lombok.NoArgsConstructor;
+import lombok.AllArgsConstructor;
+import lombok.Builder;
+
 @Entity
-@Table (name="users")
-@Data
+@Table(name = "users")
+@Getter
+@Setter
 @NoArgsConstructor
 @AllArgsConstructor
 @Builder
-        
 public class User {
-@Id
-@GeneratedValue(strategy = GenerationType.IDENTITY)
-private Long id;
 
-@Column(nullable = false, unique = true) // es para que no se repita
-private String username;
+    @Id
+    @GeneratedValue(strategy = GenerationType.IDENTITY)
+    private Long id;
 
-@Column(nullable = false)  // es para no dejar espacios en blanco
-private String password;
+    @Column(nullable = false, unique = true)
+    private String username;
 
-@Column(nullable = false)
-private String role;
+    @Column(nullable = false)
+    private String password;
 
+    @Column(nullable = false)
+    private String role; // "ROLE_USER", "ROLE_ADMIN"
 }
-
-

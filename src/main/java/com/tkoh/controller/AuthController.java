@@ -1,46 +1,30 @@
 package com.tkoh.controller;
+
 import com.tkoh.dto.AuthResponseDTO;
 import com.tkoh.dto.LoginRequestDTO;
 import com.tkoh.dto.RegisterRequestDTO;
 import com.tkoh.service.AuthService;
-import lombok.RequiredArgsConstructor;
+import jakarta.validation.Valid;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 
-import java.util.List;
-
 @RestController
 @RequestMapping("/api/auth")
-@RequiredArgsConstructor
-
 public class AuthController {
- private final AuthService authService;
+
+    private final AuthService authService;
+
+    public AuthController(AuthService authService) {
+        this.authService = authService;
+    }
 
     @PostMapping("/register")
-    public ResponseEntity<AuthResponseDTO> registrar(@RequestBody RegisterRequestDTO dto) {
-        return ResponseEntity.ok(authService.registrarUsuario(dto));
+    public ResponseEntity<AuthResponseDTO> register(@Valid @RequestBody RegisterRequestDTO request) {
+        return ResponseEntity.ok(authService.register(request));
     }
 
     @PostMapping("/login")
-    public ResponseEntity<AuthResponseDTO> login(@RequestBody LoginRequestDTO dto) {
-        return ResponseEntity.ok(authService.login(dto));
-    }
-
-    @GetMapping("/users")
-    public List<AuthResponseDTO> listar() {
-        return authService.listarUsuarios();
-    }
-
-    @GetMapping("/users/{id}")
-    public AuthResponseDTO obtener(@PathVariable Long id) {
-        return authService.obtenerUsuario(id);
-    }
-
-    @DeleteMapping("/users/{id}")
-    public ResponseEntity<Void> eliminar(@PathVariable Long id) {
-        authService.eliminarUsuario(id);
-        return ResponseEntity.noContent().build();
+    public ResponseEntity<AuthResponseDTO> login(@Valid @RequestBody LoginRequestDTO request) {
+        return ResponseEntity.ok(authService.login(request));
     }
 }
-    
-

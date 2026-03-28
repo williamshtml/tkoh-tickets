@@ -9,7 +9,7 @@
   },
   "item": [
     {
-      "name": "New Request",
+      "name": "Register_user",
       "request": {
         "auth": {
           "type": "noauth"
@@ -42,7 +42,7 @@
       "response": []
     },
     {
-      "name": "New Request",
+      "name": "Login_User",
       "request": {
         "auth": {
           "type": "noauth"
@@ -75,7 +75,7 @@
       "response": []
     },
     {
-      "name": "New Request",
+      "name": "Ver_Eventos",
       "request": {
         "auth": {
           "type": "noauth"
@@ -98,7 +98,7 @@
       "response": []
     },
     {
-      "name": "New Request",
+      "name": "Prueba_sobreventa",
       "request": {
         "auth": {
           "type": "bearer",
@@ -137,7 +137,7 @@
       "response": []
     },
     {
-      "name": "New Request",
+      "name": "Login_Admin",
       "request": {
         "auth": {
           "type": "noauth"
@@ -170,7 +170,7 @@
       "response": []
     },
     {
-      "name": "New Request",
+      "name": "Crear_evento_admin",
       "request": {
         "auth": {
           "type": "bearer",
